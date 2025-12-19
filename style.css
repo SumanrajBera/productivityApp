@@ -2,10 +2,9 @@
 :root {
   --global-family: "Poppins", sans-serif;
   --logo-family: "Geom", sans-serif;
-  --theme-primary: #161616;
-  --theme-secondary: #252525;
+  --theme-primary: #af3b15;
+  --theme-secondary: #cc4c21;
   --theme-font: #f5f5f5;
-  --inner-font: #f5f5f5;
 }
 
 * {
@@ -104,13 +103,13 @@ main nav .customisation .themes .theme3 {
   cursor: pointer;
 }
 main nav .customisation .themes .theme1 {
-  background: linear-gradient(-45deg, #000 50%, #fff 50%);
+  background: linear-gradient(-45deg, #af3b15 50%, #cc4c21 50%);
 }
 main nav .customisation .themes .theme2 {
-  background: linear-gradient(-45deg, #fff 50%, #000 50%);
+  background: linear-gradient(-45deg, #161616 50%, #252525 50%);
 }
 main nav .customisation .themes .theme3 {
-  background: linear-gradient(-45deg, #fff 50%, #000 50%);
+  background: linear-gradient(-45deg, #0a283a 50%, #0c324a 50%);
 }
 main nav .customisation .themes .activeTheme {
   outline: 1px solid;
@@ -141,7 +140,7 @@ main #dashboard .dateTime {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: var(--inner-font);
+  color: var(--theme-font);
 }
 main #dashboard .dateTime .greetings {
   font-size: clamp(1.5rem, 5vw, 3rem);
@@ -165,7 +164,7 @@ main #dashboard .sectionLinks {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  color: var(--inner-font);
+  color: var(--theme-font);
 }
 main #dashboard .sectionLinks .todoSection,
 main #dashboard .sectionLinks .dailyPlanner,

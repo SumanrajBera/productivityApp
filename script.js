@@ -87,15 +87,17 @@ const customPanelObj = {
                 let theme = themes[i].dataset.theme
 
                 if (theme === "light") {
-                    document.documentElement.style.setProperty("--theme-primary", "#f5f5f5");
-                    document.documentElement.style.setProperty("--theme-secondary", "#efefef");
-                    document.documentElement.style.setProperty("--theme-font", "#161616");
+                    document.documentElement.style.setProperty("--theme-primary", "#af3b15");
+                    document.documentElement.style.setProperty("--theme-secondary", "#cc4c21");
                     localStorage.setItem("theme", "light")
                 } else if (theme === "dark") {
                     document.documentElement.style.setProperty("--theme-primary", "#161616");
                     document.documentElement.style.setProperty("--theme-secondary", "#252525");
-                    document.documentElement.style.setProperty("--theme-font", "#f5f5f5");
                     localStorage.setItem("theme", "dark")
+                } else {
+                    document.documentElement.style.setProperty("--theme-primary", "#0a283a");
+                    document.documentElement.style.setProperty("--theme-secondary", "#0c324a");
+                    localStorage.setItem("theme", "blue")
                 }
                 localStorage.setItem("themeIdx", i)
             })
@@ -155,13 +157,14 @@ window.onload = function () {
         themes[themeIdx].classList.add("activeTheme")
 
         if (theme === "light") {
-            document.documentElement.style.setProperty("--theme-primary", "#f5f5f5");
-            document.documentElement.style.setProperty("--theme-secondary", "#efefef");
-            document.documentElement.style.setProperty("--theme-font", "#161616");
+            document.documentElement.style.setProperty("--theme-primary", "#af3b15");
+            document.documentElement.style.setProperty("--theme-secondary", "#cc4c21");
         } else if (theme === "dark") {
             document.documentElement.style.setProperty("--theme-primary", "#161616");
             document.documentElement.style.setProperty("--theme-secondary", "#252525");
-            document.documentElement.style.setProperty("--theme-font", "#f5f5f5");
+        } else {
+            document.documentElement.style.setProperty("--theme-primary", "#0a283a");
+            document.documentElement.style.setProperty("--theme-secondary", "#0c324a");
         }
     }
 }
