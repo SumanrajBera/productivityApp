@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --global-family: "Poppins", sans-serif;
+  --logo-family: "Geom", sans-serif;
+  --theme-primary: #161616;
+  --theme-secondary: #252525;
+  --theme-font: #f5f5f5;
+  --inner-font: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--global-family);
+  background-color: var(--theme-primary);
+  color: var(--theme-font);
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+main nav {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--theme-secondary);
+}
+main nav .logo {
+  font-family: var(--logo-family);
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+main nav .menu {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: rotate 1s ease;
+  position: relative;
+  z-index: 1000;
+}
+main nav .active {
+  rotate: -90deg;
+}
+main nav .customisation {
+  width: 280px;
+  min-height: 200px;
+  background-color: var(--theme-secondary);
+  box-shadow: 0 0 2px;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 90%;
+  right: 1rem;
+  opacity: 0;
+  transform-origin: top right;
+  rotate: 90deg;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  padding: 1rem;
+}
+main nav .customisation label {
+  margin-bottom: 0.2rem;
+}
+main nav .customisation .inp {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.2rem;
+}
+main nav .customisation .inp input {
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+main nav .customisation .inp button {
+  padding: 0.2rem 0.5rem;
+}
+main nav .customisation .themes {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  margin-block: 0.5rem;
+}
+main nav .customisation .themes .theme1,
+main nav .customisation .themes .theme2,
+main nav .customisation .themes .theme3 {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+main nav .customisation .themes .theme1 {
+  background: linear-gradient(-45deg, #000 50%, #fff 50%);
+}
+main nav .customisation .themes .theme2 {
+  background: linear-gradient(-45deg, #fff 50%, #000 50%);
+}
+main nav .customisation .themes .theme3 {
+  background: linear-gradient(-45deg, #fff 50%, #000 50%);
+}
+main nav .customisation .themes .activeTheme {
+  outline: 1px solid;
+  outline-offset: 2px;
+}
+main nav .activeCustomPanel {
+  rotate: 0deg;
+  opacity: 1;
+  pointer-events: auto;
+}
+main #dashboard {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+main #dashboard .dateTime {
+  width: 100%;
+  min-height: 200px;
+  background-color: var(--theme-secondary);
+  background: linear-gradient(rgba(0, 0, 0, 0.537254902), rgba(0, 0, 0, 0.5215686275)), url(https://t3.ftcdn.net/jpg/07/32/10/90/360_F_732109080_4lXwGofazqAiysUpcCnrbflsNOl9EMdW.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--inner-font);
+}
+main #dashboard .dateTime .greetings {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  line-height: 1;
+}
+main #dashboard .dateTime .greetings .nameElem {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+main #dashboard .dateTime .dayInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+}
+main #dashboard .dateTime .dayInfo span {
+  font-weight: 800;
+}
+main #dashboard .sectionLinks {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--inner-font);
+}
+main #dashboard .sectionLinks .todoSection,
+main #dashboard .sectionLinks .dailyPlanner,
+main #dashboard .sectionLinks .pomodoro,
+main #dashboard .sectionLinks .motivation {
+  width: 100%;
+  min-height: 300px;
+  background-color: var(--theme-black-secondary);
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+main #dashboard .sectionLinks .todoSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.3098039216), rgba(0, 0, 0, 0.3098039216)), url(https://images.unsplash.com/photo-1665808282962-9bd99d7fe3f6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+}
+main #dashboard .sectionLinks .dailyPlanner {
+  background: linear-gradient(rgba(0, 0, 0, 0.3098039216), rgba(0, 0, 0, 0.3098039216)), url(https://images.unsplash.com/photo-1624969862293-b749659ccc4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+}
+main #dashboard .sectionLinks .pomodoro {
+  background: linear-gradient(rgba(0, 0, 0, 0.3098039216), rgba(0, 0, 0, 0.3098039216)), url(https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+}
+main #dashboard .sectionLinks .motivation {
+  background: linear-gradient(rgba(0, 0, 0, 0.3098039216), rgba(0, 0, 0, 0.3098039216)), url(https://images.unsplash.com/photo-1644456654238-55afe990c42d?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 600px) {
+  main #dashboard .sectionLinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 800px) {
+  main #dashboard .dateTime {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media (min-width: 1000px) {
+  main #dashboard {
+    max-width: 1800px;
+    margin-inline: auto;
+  }
+  main #dashboard .sectionLinks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}/*# sourceMappingURL=style.css.map */

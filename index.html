@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="authour" description="Sumanraj Bera">
+    <meta name="description" content="This is a combined project for a Productivity Dashboard">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Be Productive</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <nav>
+            <p class="logo">Be productive</p>
+            <i class="ri-settings-5-line menu"></i>
+
+            <div class="customisation">
+                <label for="name">Name:</label>
+                <div class="inp">
+                    <input type="text" id="name" placeholder="Enter your name">
+                    <button class="setName">Set</button>
+                </div>
+                <label for="banner">Banner:</label>
+                <div class="inp">
+                    <input type="text" id="banner" placeholder="Enter banner url">
+                    <button class="setBanner">Set</button>
+                </div>
+                <p>Select Theme:</p>
+                <div class="themes">
+                    <div class="theme theme1" data-theme="light"></div>
+                    <div class="theme theme2 activeTheme" data-theme="dark"></div>
+                    <div class="theme theme3" data-theme="dark"></div>
+                </div>
+            </div>
+        </nav>
+        <section id="dashboard">
+            <h1>Dashboard</h1>
+            <div class="dateTime">
+                <div class="greetings">
+                    <p>Hello,</p>
+                    <p class="nameElem">Anonymous User</p>
+                </div>
+
+                <div class="dayInfo">
+                    <p>Day: <span class="day">Sunday</span></p>
+                    <p>Time: <span class="time">14:31</span></p>
+                    <p>Date: <span class="date">19-12-2025</span></p>
+                </div>
+            </div>
+
+            <div class="sectionLinks">
+                <div class="todoSection">
+                    <h2>Todo List</h2>
+                </div>
+                <div class="dailyPlanner">
+                    <h2>Daily Planner</h2>
+                </div>
+                <div class="pomodoro">
+                    <h2>Pomodoro</h2>
+                </div>
+                <div class="motivation">
+                    <h2>Motivation</h2>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
