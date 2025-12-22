@@ -15,6 +15,19 @@ const bannerBtn = document.querySelector(".setBanner");
 
 const themes = document.querySelectorAll(".theme")
 
+const pomoBtn = document.querySelector(".sectionLinks .pomodoro")
+const pomoClose = document.querySelector(".pomoNav .btnClose")
+const pomoSection = document.querySelector("#pomodoro")
+const pomoTiles = document.querySelectorAll(`[class$="Title"]`)
+const pomoTime = document.querySelector(".taskTime span")
+const pomoStartBtn = document.querySelector(".btnStart")
+const pomoResetBtn = document.querySelector(".btnReset")
+
+const motiBtn = document.querySelector(".sectionLinks .motivation")
+const motiClose = document.querySelector(".motiNav .btnClose")
+const motiSection = document.querySelector("#motivation")
+const quoteText = document.querySelector(".quoteText")
+const quoteAuthor = document.querySelector(".quoteAuthor")
 
 const dateTimeObj = {
     init: function () {
@@ -135,6 +148,113 @@ const customPanelObj = {
 }
 
 customPanelObj.init()
+
+const pomodoroObj = {
+    initialTime: "25:00",
+    timerInterval: null,
+    init: function () {
+        pomoBtn.addEventListener("click", function () {
+            pomoSection.style.transform = "translate(-50%,0)"
+        })
+
+        pomoClose.addEventListener("click", () => {
+            pomoSection.style.transform = "translate(-50%,-100%)"
+
+            if (this.timerInterval !== null) {
+                clearInterval(this.timerInterval)
+                this.timerInterval = null
+            }
+
+        })
+
+        for (let pomoTile of pomoTiles) {
+            pomoTile.addEventListener("click", () => {
+                for (let pomoTile of pomoTiles) {
+                    pomoTile.classList.remove("activeTitle")
+                }
+
+                pomoTile.classList.add("activeTitle")
+
+                let tileName = pomoTile.textContent.toLowerCase();
+                if (tileName === "pomodoro") {
+                    this.initialTime = "25:00"
+                } else if (tileName === "short break") {
+                    this.initialTime = "05:00"
+                } else if (tileName === "long break") {
+                    this.initialTime = "15:00"
+                }
+
+                if (this.timerInterval !== null) clearInterval(this.timerInterval);
+                this.setInitialTime()
+            })
+        }
+
+        pomoStartBtn.addEventListener("click", () => {
+            if (this.timerInterval !== null) return
+
+            let [min, sec] = pomoTime.textContent.split(":").map(Number);
+            let totalSeconds = min * 60 + sec;
+
+            this.timerInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(this.timerInterval);
+                    this.setInitialTime()
+                    this.timerInterval = null
+                    return;
+                }
+
+                totalSeconds--;
+
+                let minutes = Math.floor(totalSeconds / 60);
+                let seconds = totalSeconds % 60;
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                pomoTime.textContent = `${minutes}:${seconds}`;
+            }, 1000);
+        })
+
+        pomoResetBtn.addEventListener("click", () => {
+            if (this.timerInterval !== null) clearInterval(this.timerInterval);
+            this.setInitialTime()
+            this.timerInterval = null
+        })
+
+    },
+    setInitialTime: function () {
+        pomoTime.textContent = this.initialTime;
+    }
+}
+
+pomodoroObj.init()
+
+const motivationObj = {
+    init: function () {
+        motiBtn.addEventListener("click",  async() => {
+            motiSection.style.transform = "translate(-50%,0)"
+
+            quoteText.textContent = "Fetching..."
+            try {
+                const res = await fetch("https://thequoteshub.com/api/");
+                let data = await res.text();
+                data = JSON.parse(data)
+                quoteText.textContent = `"${data.text}"`
+                quoteAuthor.textContent = `— ${data.author}`
+            } catch (err) {
+                console.error(err);
+                quoteText.textContent = `Error occured while Fetching data`
+                quoteAuthor.textContent = ``
+            }
+        })
+
+        motiClose.addEventListener("click",  () => {
+            motiSection.style.transform = "translate(-50%,-100%)"
+        })
+    }
+}
+
+motivationObj.init()
 
 window.onload = function () {
     let username = localStorage.getItem("username")
