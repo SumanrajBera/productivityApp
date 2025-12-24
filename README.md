@@ -6,3 +6,4 @@
 - I have added new themes and replaced the simple white theme with an orange one.
 - I have added the pomodoro section which has 3 different timers which are pomodoro timer, short break timer and long break timer.
 - I have added the motivation which when clicked provides you with a new quote alongside the quote's author.
+- I have added the todo list section but haven't added the local storage

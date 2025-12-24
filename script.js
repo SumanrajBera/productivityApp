@@ -29,6 +29,18 @@ const motiSection = document.querySelector("#motivation")
 const quoteText = document.querySelector(".quoteText")
 const quoteAuthor = document.querySelector(".quoteAuthor")
 
+const todoBtn = document.querySelector(".sectionLinks .todoSection")
+const todoClose = document.querySelector(".todoNav .btnClose")
+const todoSection = document.querySelector("#todoSection")
+const taskTitle = document.querySelector("#taskTitle")
+const taskDesc = document.querySelector("#taskDesc")
+const importantElem = document.querySelector("#imp")
+const createBtn = document.querySelector(".createBtn")
+const taskList = document.querySelector(".displayGrp")
+const noTaskElem = document.querySelector(".noTask")
+
+const body = document.querySelector("body")
+
 const dateTimeObj = {
     init: function () {
         let date = new Date()
@@ -155,10 +167,12 @@ const pomodoroObj = {
     init: function () {
         pomoBtn.addEventListener("click", function () {
             pomoSection.style.transform = "translate(-50%,0)"
+            body.style.overflow = "hidden"
         })
 
         pomoClose.addEventListener("click", () => {
             pomoSection.style.transform = "translate(-50%,-100%)"
+            body.style.overflow = "auto"
 
             if (this.timerInterval !== null) {
                 clearInterval(this.timerInterval)
@@ -231,8 +245,9 @@ pomodoroObj.init()
 
 const motivationObj = {
     init: function () {
-        motiBtn.addEventListener("click",  async() => {
+        motiBtn.addEventListener("click", async () => {
             motiSection.style.transform = "translate(-50%,0)"
+            body.style.overflow = "hidden"
 
             quoteText.textContent = "Fetching..."
             try {
@@ -248,13 +263,114 @@ const motivationObj = {
             }
         })
 
-        motiClose.addEventListener("click",  () => {
+        motiClose.addEventListener("click", () => {
             motiSection.style.transform = "translate(-50%,-100%)"
+            body.style.overflow = "auto"
         })
     }
 }
 
 motivationObj.init()
+
+const todoObj = {
+    init: function () {
+        todoBtn.addEventListener("click", function () {
+            todoSection.style.transform = "translate(-50%,0%)"
+
+            body.style.overflow = "hidden"
+        })
+
+        todoClose.addEventListener("click", function () {
+            todoSection.style.transform = "translate(-50%,-100%)"
+
+            body.style.overflow = "auto"
+        })
+
+        createBtn.addEventListener("click", () => {
+            if (taskTitle.value.trim() === "") return;
+            let newTask = this.createTask(taskTitle.value, taskDesc.value, importantElem.checked)
+            taskTitle.value = ""
+            taskDesc.value = ""
+            importantElem.checked = false
+            taskList.append(newTask)
+            if(!taskList.classList.contains("hidden")) noTaskElem.classList.add("hidden")
+        })
+    },
+    createTask: function (titleText, descriptionText, isImportant = false) {
+        // ---------- main ----------
+        const task = document.createElement("div");
+        task.className = "task";
+
+        // ---------- taskInfo ----------
+        const taskInfo = document.createElement("div");
+        taskInfo.className = "taskInfo";
+
+        const title = document.createElement("p");
+        title.className = "title";
+        title.textContent = titleText;
+
+        if (isImportant) {
+            const imp = document.createElement("span");
+            imp.textContent = "IMP";
+            title.appendChild(document.createTextNode(" "));
+            title.appendChild(imp);
+        }
+
+        const doneBtn = document.createElement("button");
+        doneBtn.textContent = "Done";
+
+        doneBtn.addEventListener("click", function() {
+            task.remove()
+            if(taskList.children.length === 1) noTaskElem.classList.remove("hidden")
+        })
+
+        taskInfo.appendChild(title);
+        taskInfo.appendChild(doneBtn);
+        task.appendChild(taskInfo);
+
+        // ---------- desc (ONLY if description exists) ----------
+        if (descriptionText && descriptionText.trim() !== "") {
+            const desc = document.createElement("div");
+            desc.className = "desc";
+
+            const descGrp = document.createElement("div");
+            descGrp.className = "descGrp";
+
+            const descTitle = document.createElement("p");
+            descTitle.textContent = "Description";
+
+            const hideDesc = document.createElement("button");
+            hideDesc.className = "hideDesc";
+
+            const hideDescIcon = document.createElement("i");
+            hideDescIcon.className = "ri-arrow-right-s-fill";
+
+            hideDesc.appendChild(hideDescIcon);
+
+            descGrp.appendChild(descTitle);
+            descGrp.appendChild(hideDesc);
+
+            const descriptionElem = document.createElement("p");
+            descriptionElem.className = "description";
+            descriptionElem.textContent = descriptionText;
+
+            // toggle logic
+            hideDesc.addEventListener("click", function () {
+                hideDescIcon.classList.toggle("rotate");
+                descriptionElem.classList.toggle("hide");
+            });
+
+            desc.appendChild(descGrp);
+            desc.appendChild(descriptionElem);
+
+            task.appendChild(desc);
+        }
+
+        return task;
+    }
+}
+
+todoObj.init()
 
 window.onload = function () {
     let username = localStorage.getItem("username")
